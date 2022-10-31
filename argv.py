@@ -1,4 +1,4 @@
 
 import sys
-for var in sys.argv[1:]:
-    print(var,end='\n')
+for var1 in sys.argv[1:]:
+    print(var1,end='\n')
