@@ -24,13 +24,18 @@ syn region  pythonFString matchgroup=Quote
 	
 hi pythonFString guifg=#6666FF
 
+syn keyword pythonStopHighlighting id
+
+hi pythonStopHighlighting guifg=#FFFFFF
 syn match pythonFuncCall "_\=\w\(\w\)*("he=e-1,me=e-1
+syn keyword pythonSpecialFuncs __init__ __name__ __repr__ __str__
 
 hi pythonFuncCall guifg=#43FFAE
-
+hi pythonSpecialFuncs guifg=#43FFAE
 syn keyword pythonConditional else if elif for in while is not or and  
 hi pythonConditional guifg=#DC59BE
 
-syn match pythonSigns "[=+-,<>]"
+syn match pythonSigns "[=+,<>*!/]"
 syn match pythonSigns ":"
+syn match pythonSigns "-"
 hi pythonSigns guifg=#DC59BE
