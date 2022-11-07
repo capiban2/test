@@ -7,7 +7,7 @@ hi str1 guifg=#6666FF
 syntax region str2 matchgroup=Quote start=+'+  skip=+\\'+  end=+'+
 hi str2 guifg=#6666FF
 syn match   pythonFunction      "\h\w*" display contained
-hi def link pythonFunction              Function
+hi pythonFunction guifg=#43FFAE
 syn keyword pythonDefinition def class nextgroup=pythonFunction skipwhite
 hi pythonDefinition guifg=#3399FF
 syn keyword pythonReturn False None True
@@ -31,5 +31,6 @@ hi pythonFuncCall guifg=#43FFAE
 syn keyword pythonConditional else if elif for in while is not or and  
 hi pythonConditional guifg=#DC59BE
 
-syn match pythonSigns "[=+-:,]"
+syn match pythonSigns "[=+-,<>]"
+syn match pythonSigns ":"
 hi pythonSigns guifg=#DC59BE
