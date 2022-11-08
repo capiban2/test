@@ -1,7 +1,7 @@
-syn keyword rustSpecWords let mut return
+syn keyword rustSpecWords let mut return use pub 
 syn match rustSpecWords "&"
-syn keyword rustStatement fn nextgroup=rustFuncName skipwhite skipempty
-
+syn keyword rustStatement fn mod impl nextgroup=rustFuncName skipwhite skipempty
+syn keyword rustSpecWords enum struct nextgroup=rustBrackets skipwhite skipempty
 
 syn keyword rustRepeat loop for while in 
 syn keyword rustConditional if else match
@@ -16,8 +16,9 @@ syn match     rustFloat       display "\<[0-9][0-9_]*\%(\.[0-9][0-9_]*\)\=\%([eE
 syn match     rustFloat       display "\<[0-9][0-9_]*\%(\.[0-9][0-9_]*\)\=\%([eE][+-]\=[0-9_]\+\)\=\(f32\|f64\)"
 
 syn match rustSigns "[+=-]"
-syn match rustSigs "[.]"
+syn match rustSigns "\([.*>]\)\V"
 
+syn match rustStopHighlighting "->"
 syn match rustFuncName "\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*" display contained
 syn keyword   rustType        isize usize char bool u8 u16 u32 u64 u128 f32
 syn keyword   rustType        f64 i8 i16 i32 i64 i128 str Self
@@ -30,12 +31,15 @@ syn region    rustString    matchgroup=Quote start='b\?r\z(#*\)"' end='"\z1'
 
 syn match rustStopHighlighting "[:]"
 
+syn region rustBrackets start="enum.*{" end="}" transparent fold contains=ALLBUT,rustFuncCall
+
 hi rustString guifg=#0080FF
 hi rustDecNumber guifg=#00FFFF
 hi rustFuncCall guifg=#00FFFF
 hi rustStatement guifg=#F7005B
 hi rustFuncName guifg=#CF71E6
 hi rustFuncCall guifg=#66FF66
+hi rustSigns guifg=#F7005B
 hi link rustSpecWords rustStatement
 hi link rustRepeat rustStatement
 hi link rustConditional rustStatement
