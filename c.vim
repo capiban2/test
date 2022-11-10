@@ -1,8 +1,11 @@
 syn keyword     cConditional    if else switch case
 syn keyword     cRepeat         while for do
 syn keyword     cStatement      goto break return continue asm
-
-
+syn region      cIncluded       display contained start=+"+ skip=+\\\\\|\\"+ end=+"+
+syn match       cIncluded       display contained "<[^>]*>"
+syn match       cInclude        display "^\s*\zs\%(%:\|#\)\s*include\>\s*["<]" contains=cIncluded
+syn region      cDefine         start="^\s*\zs\%(%:\|#\)\s*\%(define\|undef\)\>" skip="\\$" end="$" keepend contains=ALLBUT,@cPreProcGroup,@Spell
+syn region      cPreProc        start="^\s*\zs\%(%:\|#\)\s*\%(pragma\>\|line\>\|warning\>\|warn\>\|error\>\)" skip="\\$" end="$" keepend contains=ALLBUT,@cPreProcGroup,@Spell
 
 syn case ignore
 syn match       cNumbers        display transparent "\<\d\|\.\d" contains=cNumber,cFloat,cOctalError,cOctal
@@ -27,6 +30,9 @@ hi cStatement guifg=#009999
 hi cNumbers guifg=#99FFFF
 hi link cNumber cNumbers
 hi link cOctal cNumbers
-hi link cFloat cNumers
+hi link cFloat cNumbers
+hi cInclude guifg=#B17BE6
+hi link cDefine cInclude 
+hi link cPreProc cInclude
 
 
