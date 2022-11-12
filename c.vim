@@ -1,6 +1,7 @@
 syn keyword     cConditional    if else switch case
 syn keyword     cRepeat         while for do
 syn keyword     cStatement      goto break return continue asm
+syn keyword	cSpecWord	sizeof
 syn region      cIncluded       display contained start=+"+ skip=+\\\\\|\\"+ end=+"+
 syn match       cIncluded       display contained "<[^>]*>"
 syn match       cInclude        display "^\s*\zs\%(%:\|#\)\s*include\>\s*["<]" contains=cIncluded
@@ -26,6 +27,7 @@ syn match       cFloat          display contained "\d\+e[-+]\=\d\+[fl]\=\>"
 
 hi cConditional guifg=#0080FF
 hi link cRepeat cConditional
+hi link cSpecWord cConditional
 hi cStatement guifg=#009999
 hi cNumbers guifg=#99FFFF
 hi link cNumber cNumbers
